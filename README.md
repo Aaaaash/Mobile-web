@@ -10,3 +10,8 @@
 @media screen and (min-width:480px){
     body{background: blue}
 }
+
+#Bootstrap框架
+·响应式css框架
+·Bootstrap本身是高度组件化的，使用时尽量避免重新开发
+·Bootstrap的核心是栅格化布局
