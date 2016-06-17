@@ -25,6 +25,6 @@
 再加一句`initial-scale=1`则表示页面首次被显示按实际尺寸显示，无任何缩放<br/>
 user-scalable:是否可对页面进行缩放，no 禁止缩放<br/>
 这样就构成了移动web页面meta标签的常用写法
->\ <meta name="viewport" content="width=device-width,initial-scale=1.0">
+>\<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 ##3.flex布局与百分比布局
