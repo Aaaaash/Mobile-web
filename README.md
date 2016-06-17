@@ -28,3 +28,76 @@ user-scalable:是否可对页面进行缩放，no 禁止缩放<br/>
 >\<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 ##3.flex布局与百分比布局
+flex布局就是`弹性盒子布局`，旨在提供一个更加有效的方式来布置，对齐和分布在容器之间的各项内容，即使它们的大小是未知或者动态变化的<br/>
+>弹性布局的主要思想是让容器有能力来改变项目的宽度和高度，以填满可用空间（主要是为了容纳所有类型的显示设备和屏幕尺寸）的能力。
+最重要的是弹性盒子布局与方向无关，相对于常规的布局（块是垂直和内联水平为基础），很显然，这些工作以及网页设计缺乏灵活性，无法支持大型和复杂的应用程序（特别当它涉及到改变方向，缩放、拉伸和收缩等）。
+
+###属性介绍
+display: flex | inline-flex; (适用于父类容器元素上)<br/>
+定义一个flex容器，内联或者根据指定的值，来作用于下面的子类容器。<br/>
+* box：将对象作为弹性伸缩盒显示。（伸缩盒最老版本）（css3）
+* inline-box：将对象作为内联块级弹性伸缩盒显示。（伸缩盒最老版本）（CSS3）
+* flexbox：将对象作为弹性伸缩盒显示。（伸缩盒过渡版本）（CSS3）
+* inline-flexbox：将对象作为内联块级弹性伸缩盒显示。（伸缩盒过渡版本）（CSS3）
+* flex：将对象作为弹性伸缩盒显示。（伸缩盒最新版本）（CSS3）
+* inline-flex：将对象作为内联块级弹性伸缩盒显示。（伸缩盒最新版本）（CSS3）
+
+>css 列（CSS columns）在弹性盒子中不起作用
+float, clear and vertical-align 在flex项目中不起作用
+
+###栗子
+####1.居中对齐
+>.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+    * 通过设置父类容器的css代码控制子元素的排列方式（flex-direction:row）从左到右（默认方式）。
+    * 子元素超出内容时是否换行。flex-wrap:wrap（采用换行的方式）。
+    * 合起来就是flex-flow:row wrap
+    * 设置子元素的弹性盒堆叠伸缩行的对齐方式为在盒子中平局分布 justify-content:space-around
+####2.自适应导航
+>
+.navigation {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+}
+@media all and (max-width: 800px) {
+  .navigation {
+    justify-content: space-around;
+  }
+}
+@media all and (max-width: 500px) {
+  .navigation {
+    flex-direction: column;
+  }
+}
+
+    * 设置子元素为从左到右（flex-direction:row），内容超出换行（flex-wrap:wrap）.
+    * 设置子元素的内容向右对齐（justify-content:flex-end）
+    * 当小于800px时，内容为居中，当小于500px时，内容纵向排列，从上到下。
+####3.常见3栏移动优先布局
+>.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+}
+.header, .main, .nav, .aside, .footer {
+  flex: 1 100%;
+}
+@media all and (min-width: 600px) {
+  .aside { flex: 1 auto; }
+}
+@media all and (min-width: 800px) {
+  .main { flex: 2 0px; }
+  .aside-1 { order: 1; }
+  .main    { order: 2; }
+  .aside-2 { order: 3; }
+  .footer  { order: 4; }
+}
+
+    * 设置子元素从左到右，超出换行（flex-flow:row wrap;）。
+    * 默认情况下所有子元素拓展比例为1（flex-grow:1），伸缩比例为100%（flex-basis:100%）。
+    * 大于800px时，.main的拓展比例为2.伸缩值为0（flex-basis:0px）,并且侧栏aside-1排列在第一位，main在第二位，aside-2在第三位。
+    * 大于600时。.aside元素的拓展比例为1（flex-grow:1），伸缩比例为auto（flex-basis:auto）。
