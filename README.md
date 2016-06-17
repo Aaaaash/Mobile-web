@@ -13,4 +13,18 @@
 
 总而言之，逻辑像素是设计时应当参考的尺度；而物理像素，则是设备屏幕实际具有的像素数目。<br/>
 
-##2.移动设备缩放比
+##2.移动设备缩放比(meta标签与viewport)
+基于移动设备的逻辑像素与物理像素的关系衍生出一个概念`DPR`<br/>
+简而言之就是设备上物理像素和逻辑像素(device-independent pixels (dips))的比例。<br/>
+例如iphone5的dpr为2，那么它的逻辑像素为320x568,而它的物理像素则为(320x2)x(568x2)<br/>
+为了页面在手机端以逻辑像素为基准正确显示，我们的meta标签应该这样写<br/>
+
+>\<meta name="viewport" content="width=device-width">
+
+这样写页面的宽度始终是设备的逻辑像素，对于iphone5而言就是320px<br/>
+再加一句`initial-scale=1`则表示页面首次被显示按实际尺寸显示，无任何缩放<br/>
+user-scalable:是否可对页面进行缩放，no 禁止缩放<br/>
+这样就构成了移动web页面meta标签的常用写法
+>\ <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+##3.flex布局与百分比布局
