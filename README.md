@@ -47,11 +47,11 @@ float, clear and vertical-align 在flex项目中不起作用
 
 ###栗子
 ####1.居中对齐
->.flex-container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-}
+>.flex-container {<br/>
+  display: flex;<br/>
+  flex-flow: row wrap;<br/>
+  justify-content: space-around;<br/>
+}<br/>
 
     * 通过设置父类容器的css代码控制子元素的排列方式（flex-direction:row）从左到右（默认方式）。
     * 子元素超出内容时是否换行。flex-wrap:wrap（采用换行的方式）。
@@ -59,43 +59,43 @@ float, clear and vertical-align 在flex项目中不起作用
     * 设置子元素的弹性盒堆叠伸缩行的对齐方式为在盒子中平局分布 justify-content:space-around
 ####2.自适应导航
 >
-.navigation {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-end;
-}
-@media all and (max-width: 800px) {
-  .navigation {
-    justify-content: space-around;
-  }
-}
-@media all and (max-width: 500px) {
-  .navigation {
-    flex-direction: column;
-  }
-}
+.navigation {<br/>
+  display: flex;<br/>
+  flex-flow: row wrap;<br/>
+  justify-content: flex-end;<br/>
+}<br/>
+@media all and (max-width: 800px) {<br/>
+  .navigation {<br/>
+    justify-content: space-around;<br/>
+  }<br/>
+}<br/>
+@media all and (max-width: 500px) {<br/>
+  .navigation {<br/>
+    flex-direction: column;<br/>
+  }<br/>
+}<br/>
 
     * 设置子元素为从左到右（flex-direction:row），内容超出换行（flex-wrap:wrap）.
     * 设置子元素的内容向右对齐（justify-content:flex-end）
     * 当小于800px时，内容为居中，当小于500px时，内容纵向排列，从上到下。
 ####3.常见3栏移动优先布局
->.wrapper {
-  display: flex;
-  flex-flow: row wrap;
-}
-.header, .main, .nav, .aside, .footer {
-  flex: 1 100%;
-}
-@media all and (min-width: 600px) {
-  .aside { flex: 1 auto; }
-}
-@media all and (min-width: 800px) {
-  .main { flex: 2 0px; }
-  .aside-1 { order: 1; }
-  .main    { order: 2; }
-  .aside-2 { order: 3; }
-  .footer  { order: 4; }
-}
+>.wrapper {<br/>
+  display: flex;<br/>
+  flex-flow: row wrap;<br/>
+}<br/>
+.header, .main, .nav, .aside, .footer {<br/>
+  flex: 1 100%;<br/>
+}<br/>
+@media all and (min-width: 600px) {<br/>
+  .aside { flex: 1 auto; }<br/>
+}<br/>
+@media all and (min-width: 800px) {<br/>
+  .main { flex: 2 0px; }<br/>
+  .aside-1 { order: 1; }<br/>
+  .main    { order: 2; }<br/>
+  .aside-2 { order: 3; }<br/>
+  .footer  { order: 4; }<br/>
+}<br/>
 
     * 设置子元素从左到右，超出换行（flex-flow:row wrap;）。
     * 默认情况下所有子元素拓展比例为1（flex-grow:1），伸缩比例为100%（flex-basis:100%）。
