@@ -132,3 +132,86 @@ float, clear and vertical-align 在flex项目中不起作用
 
 很明显em在多层节点嵌套下会变得非常复杂，难以控制<br/>
 而rem使用html根节点的font-size作为全局统一的参照点，便于计算<br/>
+
+##交互
+>移动web页面上的lcick事件有300ms延迟
+
+在移动页面上应该使用自定义的事件来代替click事件<br/>
+自定义Tap事件原理：<br/>
+在touchstart、touchend时记录事件、手指位置，在touchend时进行比较，如果手指位置为同一位置（或可以允许移动一个非常小的位移值）且事件间隔较短（200ms），过程中未曾处罚过touchmove事件，即可认为出发了移动设备上的'click'，一般称为`Tap`<br/>
+移动端的zepto库实现了tap事件<br/>
+但是Tap事件会有一个点穿的bug<br/>
+
+##ZeptoJS
+1.可以无缝接入和改造现有的jQuery相关项目<br/>
+2.学习成本低<br/>
+
+zepto中的$看起来和jquery的$相同<br/>
+zepto中的$也主要用于选择器<br/>
+zepto选择器返回的是一个数组
+>$('#sidebar').toString()---->>"[object Array]"
+
+###Core模块(核心模块)
+如果将一个dom节点直接传给$，也会返回一个数组对象<br/>
+>var dom=document.getElementById('sidebar')---->>$(dom)<br/>
+
+$.camelCase方法<br/>
+把一个字符串返回为驼峰命名格式的字符串<br/>
+...<br/>
+
+$.each方法<br/>
+遍历数组<br/>
+
+$.extend方法<br/>
+继承<br/>
+
+以及与jQuery相同的一些常用方法<br/>
+
+###Event模块
+zepto的event模块与jQuery稍有不同<br/>
+支持以下方法用于绑定和解除事件<br/>
+>bind<br/>
+delegate<br/>
+die<br/>
+live<br/>
+off<br/>
+on<br/>
+one<br/>
+trigger<br/>
+triggerHandler<br/>
+
+$.Event自定义事件方法<br/>
+>$.Event('mylib:change', { bubbles: false })<br/>
+trigger方法用于触发自定义事件
+
+Touch events<br/>
+扩展事件，用于移动端触屏的手势等事件<br/>
+* tap       ---->>点击事件
+* singleTap、doubleTap     ---->>单击和双击
+* longTap       ---->>长按
+* swipe, swipeLeft, swipeRight, swipeUp     ---->>上下左右滑动
+###Ajax模块
+支持以下方法用于ajax与服务器通信<br/>
+>$.ajax<br/>
+$.ajaxJSONP<br/>
+$.ajaxSettings<br/>
+$.get<br/>
+$.getJSON<br/>
+$.param<br/>
+$.post<br/>
+load<br/>
+
+基本与jQuery相同，但是zepto使用`XMLHttpRequest` lv2协议，可以直接实现跨域请求<br/>
+
+###Form模块
+包含三个方法用于表单相关操作<br/>
+>serialize<br/>
+serializeArray<br/>
+submit<br/>
+
+###Effects模块
+包含两个方法用于动画相关<br/>
+>$.fx<br/>
+animate<br/>
+
+以上是zeptoJS所有自带模块相关简介
